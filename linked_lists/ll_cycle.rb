@@ -52,4 +52,46 @@ class LinkedList
       index += 1
     end
   end
+
+  def terminates?
+    slow_node = @head
+    fast_node = @head.pointer.pointer
+
+    while true
+      if fast_node.nil? or fast_node.pointer.nil?
+        puts "LinkedList is acyclic."
+        return true
+      elsif fast_node == slow_node or fast_node.pointer == slow_node
+        puts "LinkedList cycles."
+        return false
+      else
+        slow_node = slow_node.pointer
+        fast_node = fast_node.pointer.pointer
+      end
+    end
+  end
 end
+
+first_node = Node.new(1)
+p first_node.value == 1
+p first_node.pointer == nil
+
+our_list = LinkedList.new(first_node)
+p our_list.head.value == 1
+
+second_node = Node.new(2)
+third_node = Node.new(3)
+our_list.add(second_node)
+our_list.add(third_node)
+p our_list.print_list
+puts
+
+puts '--Acyclic--' * 10
+p our_list.terminates? == true
+puts
+
+puts '--Cyclic--' * 10
+fourth_node = Node.new(4)
+fourth_node.pointer = first_node
+p our_list.add(fourth_node)
+p our_list.terminates? == false
