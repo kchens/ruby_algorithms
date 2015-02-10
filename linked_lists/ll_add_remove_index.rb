@@ -52,6 +52,30 @@ class LinkedList
       index += 1
     end
   end
+
+  def add_at_index(new_node, index)
+    current_node = @head
+    next_index = 1
+    while next_index <= index
+      if next_index == index
+        new_node.pointer = current_node.pointer
+        current_node.pointer = new_node
+      end
+      current_node = current_node.pointer
+      next_index += 1
+    end
+  end
+
+  def remove_at_index(remove_index)
+    current_node = @head
+    next_index = 1
+    while next_index <= remove_index
+      next_node = current_node.pointer
+      current_node.pointer = current_node.pointer.pointer
+      next_node.pointer = nil
+      next_index += 1
+    end
+  end
 end
 
 first_node = Node.new(1)
@@ -66,11 +90,13 @@ third_node = Node.new(3)
 our_list.add(second_node)
 our_list.add(third_node)
 p our_list.print_list
+puts
 
-p "-" * 50
-our_list.remove
+p "--Add At Index--" * 5
+new_node = Node.new(7)
+our_list.add_at_index(new_node, 2)
 p our_list.print_list
-
-p "-" * 50
-our_list.remove
+puts
+p "--Remove At Index--" * 5
+our_list.remove_at_index(1)
 p our_list.print_list
