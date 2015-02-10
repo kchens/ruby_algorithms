@@ -53,30 +53,20 @@ class LinkedList
     end
   end
 
-  def add_at_index(new_node, index)
+  def print_reverse
+    previous_node = nil
     current_node = @head
-    next_index = 1
-    while next_index <= index
-      if next_index == index
-        new_node.pointer = current_node.pointer
-        current_node.pointer = new_node
-      end
-      current_node = current_node.pointer
-      next_index += 1
-    end
-  end
 
-  def remove_at_index(remove_index)
-    current_node = @head
-    next_index = 1
-    while next_index <= remove_index
+    until current_node == nil
       next_node = current_node.pointer
-      current_node.pointer = current_node.pointer.pointer
-      next_node.pointer = nil
-      next_index += 1
+      current_node.pointer = previous_node
+      previous_node = current_node
+      current_node = next_node
     end
+    @head = previous_node
   end
 end
+
 
 first_node = Node.new(1)
 p first_node.value == 1
@@ -87,16 +77,13 @@ p our_list.head.value == 1
 
 second_node = Node.new(2)
 third_node = Node.new(3)
+fourth_node = Node.new(4)
+fifth_node = Node.new(5)
 our_list.add(second_node)
 our_list.add(third_node)
+our_list.add(fourth_node)
+our_list.add(fifth_node)
 p our_list.print_list
 puts
 
-p "--Add At Index--" * 5
-new_node = Node.new(7)
-our_list.add_at_index(new_node, 2)
-p our_list.print_list
-puts
-p "--Remove At Index--" * 5
-our_list.remove_at_index(1)
-p our_list.print_list
+p our_list.print_reverse
