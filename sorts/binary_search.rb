@@ -1,5 +1,4 @@
 def binary_search(array, target_num)
-
     min_idx = 0
     max_idx = array.length - 1
 

@@ -15,4 +15,11 @@ def largest_product(num_list)
     max_product = biggest_num * second_num
 end
 
+def largest_product_nums(nums_array)
+    sorted = nums_array.sort
+    largest_num = sorted.pop
+    second_num = sorted.pop
+    return "#{largest_num}, #{second_num}"
+end
+
 largest_product([4,5,7,1,8,4,2])

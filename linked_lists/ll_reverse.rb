@@ -31,13 +31,14 @@ class LinkedList
 
   def remove
     return "Nothing to remove" if @head == nil
-
+    removed_nodes = []
     last_node = @head
     until last_node.pointer == nil
       second_to_last_node = last_node
       last_node = last_node.pointer
     end
     second_to_last_node.pointer = nil
+    removed_nodes << last_node
     # uncomment to see de-referenced nodes
     # pp second_to_last_node
     # pp last_node
