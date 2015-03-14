@@ -26,6 +26,6 @@ matrix = [[11, 12, 13, 14, 15],
 [31, 32, 33, 34, 35],
 [41, 42, 43, 44, 45]]
 
-puts print_spiral(matrix)
+# puts print_spiral(matrix)
 p "-" * 50
-# puts print_spiral_recursive(matrix)
+puts print_spiral_recursive(matrix)

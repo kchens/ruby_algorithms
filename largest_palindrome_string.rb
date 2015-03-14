@@ -18,15 +18,26 @@ def largest_palindrome?(sentence)
       if word.length > ret.length
         ret.pop
         ret << word
-      # elsif word.length == ret.length
-      #   ret << word
       end
     end
   end
-  ret
 end
 
-def palindrome(string)
+def palindrome?(string)
   return true if string == string.reverse
   return false
 end
+
+def largest_palindrome?(sentence)
+  array_of_words = sentence.split(" ")
+  ret = []
+  array_of_words.each do |word|
+    if palindrome?(word)
+      if word.length > ret.length
+        ret << word
+      end
+    end
+  end
+  ret.max_by {|word| word.length}
+end
+
