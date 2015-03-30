@@ -72,7 +72,7 @@ pp bst
 
 # Is In a Node --------------------------------------
 
-
+# recursive
 def is_in(target_value, bst = empty_tree)
   if isEmpty?(bst)
     return false
@@ -83,6 +83,20 @@ def is_in(target_value, bst = empty_tree)
   else
     is_in(target_value, bst.right)
   end
+end
+
+# iterative solution
+def is_in(target_value, bst = empty_tree)
+  until isEmpty?(bst)
+    if bst.root.value == target_value
+      return true
+    elsif target_value < bst.root.value
+      bst = bst.left
+    else
+      bst = bst.right
+    end
+  end
+  return false
 end
 
 p is_in(1, bst)  == true
