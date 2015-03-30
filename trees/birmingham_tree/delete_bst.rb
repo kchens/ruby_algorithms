@@ -59,16 +59,16 @@ def insert(new_value, bst = empty_tree)
   end
 end
 
-bst = insert(3)
-pp bst
-pp isEmpty?(bst)
-p bst.root.value
+# bst = insert(3)
+# pp bst
+# pp isEmpty?(bst)
+# p bst.root.value
 
-bst = insert(5, bst)
-bst = insert(1, bst)
-bst = insert(2, bst)
-bst = insert(4, bst)
-pp bst
+# bst = insert(5, bst)
+# bst = insert(1, bst)
+# bst = insert(2, bst)
+# bst = insert(4, bst)
+# pp bst
 
 # Deleting a Node --------------------------------------
 
@@ -97,22 +97,35 @@ def delete(target_value, bst)
 end
 
 def smallestNode(bst)
-  if bst.left == nil
-    return bst.root
+  if isEmpty?(bst.left) #substittue for isEmpty?
+    return bst.left
   else
     smallestNode(bst.left)
   end
 end
 
 def removeSmallestNode(bst)
-  if isEmpty?(bst.left)
+  if isEmpty?(bst.left) #substittue for isEmpty?
     return bst.right
   else
-    return make_tree(bst.root.value, )
+    return make_tree(bst.root.value, removeSmallestNode(bst.left), bst.right)
   end
 end
 
 
-bst = delete(1, bst)
-bst = delete(4, bst)
-pp bst
+# bst = delete(1, bst)
+# bst = delete(3, bst)
+# pp bst
+
+
+# p '-' * 50
+# bst = insert(5)
+# bst = insert(1, bst)
+# bst = insert(2, bst)
+# bst = insert(3, bst)
+# bst = insert(4, bst)
+# bst = insert(6, bst)
+# bst = insert(7, bst)
+# bst = insert(8, bst)
+# bst = insert(9, bst)
+# bst = insert(10, bst)
