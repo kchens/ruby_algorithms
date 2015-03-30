@@ -46,3 +46,73 @@ end
 
 # Creating Binary Search Tree --------------------------------------
 require 'pp'
+
+def insert(new_value, bst = empty_tree)
+  if isEmpty?(bst)
+    return leaf(new_value)
+  elsif new_value < bst.root.value
+    return make_tree( bst.root.value, insert( new_value, bst.left), bst.right )
+  elsif new_value > bst.root.value
+    return make_tree( bst.root.value, bst.left, insert(new_value, bst.right) )
+  else
+    puts "Error."
+  end
+end
+
+bst = insert(3)
+pp bst
+pp isEmpty?(bst)
+p bst.root.value
+
+bst = insert(5, bst)
+bst = insert(1, bst)
+bst = insert(2, bst)
+bst = insert(4, bst)
+pp bst
+
+# Deleting a Node --------------------------------------
+
+# If node is a leaf, remove it
+# If the node has one child that is not-empty, 'move up' the subtree
+# If the node has two children that are not-empty,
+
+def delete(target_value, bst)
+  if isEmpty?(bst)
+    return bst
+  else
+    if target_value < bst.root.value #delete from left subtree
+      return make_tree(bst.root.value, delete(target_value, bst.left), bst.right)
+    elsif target_value > bst.root.value #delete from right subtree
+      return make_tree(bst.root.value, bst.left, delete(target_value, bst.right))
+    else # item to be deleted is bst.root
+      if isEmpty?(bst.left)
+        return bst.right
+      elsif isEmpty?(bst.left)
+        return bst.left
+      else
+        return make_tree(smallestNode(bst.right), bst.left, removeSmallestNode(bst.right))
+      end
+    end
+  end
+end
+
+def smallestNode(bst)
+  if bst.left == nil
+    return bst.root
+  else
+    smallestNode(bst.left)
+  end
+end
+
+def removeSmallestNode(bst)
+  if isEmpty?(bst.left)
+    return bst.right
+  else
+    return make_tree(bst.root.value, )
+  end
+end
+
+
+bst = delete(1, bst)
+bst = delete(4, bst)
+pp bst
