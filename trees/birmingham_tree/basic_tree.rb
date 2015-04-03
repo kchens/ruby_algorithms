@@ -62,4 +62,15 @@ def size(tree)
   end
 end
 
+def breadth_first_search(tree)
+  nodes = [tree]
+  until nodes.empty?
+    current_tree = nodes.shift
+    nodes << current_tree.left if current_tree.left != nil
+    nodes << current_tree.right if current_tree.right != nil
+    p current_tree.root.value if current_tree.root != nil
+  end
+end
+
 p size(t) == 11
+breadth_first_search(t)

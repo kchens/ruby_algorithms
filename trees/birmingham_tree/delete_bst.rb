@@ -118,14 +118,17 @@ end
 # pp bst
 
 
-# p '-' * 50
-# bst = insert(5)
-# bst = insert(1, bst)
-# bst = insert(2, bst)
-# bst = insert(3, bst)
-# bst = insert(4, bst)
-# bst = insert(6, bst)
-# bst = insert(7, bst)
-# bst = insert(8, bst)
-# bst = insert(9, bst)
-# bst = insert(10, bst)
+bst = insert(5)
+bst = insert(1, bst)
+bst = insert(2, bst)
+bst = insert(3, bst)
+bst = insert(4, bst)
+bst = insert(6, bst)
+bst = insert(7, bst)
+bst = insert(8, bst)
+bst = insert(9, bst)
+bst = insert(10, bst)
+pp bst
+p '-' * 50
+bst = delete(3, bst)
+pp bst
